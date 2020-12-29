@@ -9,13 +9,11 @@ def solution(skill, skill_trees):
             if s in skill_tree:
                 total_used_skill += 1
             while i < len(skill_tree):
-                print(s, skill_tree[i], i)
                 if skill_tree[i] == s:
                     continuosly_found_skill += 1
                     break
                 else:
                     i += 1
-            print(continuosly_found_skill, total_used_skill)
         if total_used_skill == continuosly_found_skill:
             answer += 1
 
