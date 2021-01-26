@@ -1,13 +1,26 @@
 def solution(bridge_length, weight, truck_weights):
-    answer = 0+1
-    answer += len(truck_weights)*2
-    for current_truck in range(len(truck_weights)):
-        weight_on_bridge = truck_weights[current_truck]
-        next_truck = current_truck+1
-        while next_truck < len(truck_weights) or weight_on_bridge + truck_weights[next_truck] < weight:
-            next_truck = next_truck + 1
-            answer -= 1
-    
+    answer = 1
+    bridge = [truck_weights.pop(0)]
+    bridge_weight = bridge[0]
+    bridge_check = [1]
+
+    while len(bridge) != 0:
+        answer += 1
+        if len(bridge_check) != 0 and answer - bridge_check[0] == bridge_length:
+            bridge_weight -= bridge[0]
+            bridge.pop(0)
+            bridge_check.pop(0)
+
+
+        if len(truck_weights) != 0 and bridge_weight + truck_weights[0] <= weight:
+            next_truck = truck_weights.pop(0)
+            bridge.append(next_truck)
+            bridge_check.append(answer)
+            bridge_weight += next_truck
+
     return answer
 
-solution(2, 10, [7,4,5,6])
+
+print(solution(2, 10, [7, 4, 5, 6]))
+print(solution(100, 100, [10]))
+print(solution(100, 100, [10,10,10,10,10,10,10,10,10,10]))
