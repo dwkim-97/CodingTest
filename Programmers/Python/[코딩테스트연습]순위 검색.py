@@ -8,9 +8,7 @@ def solution(info, query):
         score = int(temp[-1])
         for n in range(5):
             combi = list(combinations(range(4), n))
-            print(combi)
             for c in combi:
-                print('c', c)
                 t_c = conditions.copy()
                 for v in c:
                     t_c[v] = '-'
