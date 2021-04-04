@@ -121,12 +121,6 @@ public class Terrain_Movement {
             public int compareTo(Edge e){
                 return this.cost - e.cost;
             }
-
-            public void show(){
-                System.out.println(big_g + ", "+ small_g+": "+cost);
-            }
-
-
         }
     }
 }
