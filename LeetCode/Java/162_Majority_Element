@@ -1,0 +1,16 @@
+import java.util.*;
+class Solution {
+    public int majorityElement(int[] nums) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int criteria = nums.length / 2;
+        for(int i = 0; i < nums.length; i++){
+            if(!map.keySet().contains(nums[i]))
+                map.put(nums[i],0);
+            int t = map.get(nums[i]);
+            if(t == criteria)
+                return nums[i];
+            map.put(nums[i], t+1);
+        }
+        return 0;
+    }
+}
