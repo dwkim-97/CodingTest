@@ -1,0 +1,18 @@
+class Solution {
+    public int addDigits(int num) {
+        int answer = num;
+        while(answer >= 10)
+            answer = divideAndAdd(answer);
+        
+        return answer;
+    }
+    
+    public int divideAndAdd(int num){
+        int sum = 0;
+        while(num / 10 != 0){
+            sum += num / 10;
+            num %= 10;
+        }
+        return sum + num;
+    }
+}
