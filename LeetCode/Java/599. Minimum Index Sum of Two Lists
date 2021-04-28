@@ -1,0 +1,22 @@
+import java.util.*;
+class Solution {
+    public String[] findRestaurant(String[] list1, String[] list2) {
+        ArrayList<String> arr = new ArrayList<>();
+        int min_sum = list1.length + list2.length;
+        for(int i = 0; i < list1.length; i++){
+            for(int j = 0; j < list2.length; j++){
+                if(list1[i].equals(list2[j])){
+                   if(i+j == min_sum)
+                        arr.add(list1[i]);
+                   else if(i+j < min_sum){
+                        arr = new ArrayList<>();
+                        arr.add(list1[i]);
+                        min_sum = i+j;
+                   }
+                } 
+            }
+        }
+        String[] answer = new String[0];
+        return arr.toArray(answer);
+    }
+}
