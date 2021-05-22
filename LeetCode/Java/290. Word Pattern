@@ -1,0 +1,38 @@
+import java.util.*;
+
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        HashMap<Character, ArrayList<Integer>> map = new HashMap<>();
+        ArrayList<String> founded = new ArrayList<>();
+        
+        
+            
+        
+        for(int i = 0; i < pattern.length(); i++){
+            char c = pattern.charAt(i);
+            if(!map.keySet().contains(c))
+                map.put(c, new ArrayList<>());
+            map.get(c).add(i);
+        }
+        
+        String[] arr = s.split(" ");
+        if(arr.length != pattern.length())
+            return false;
+        
+        for(char c: map.keySet()){
+            ArrayList<Integer> p = map.get(c);
+            String checker = arr[p.get(0)];
+            
+            if(founded.contains(checker))
+                return false;
+            founded.add(checker);
+            
+            for(int i = 1; i < p.size(); i++){
+                if(!arr[p.get(i)].equals(checker)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
