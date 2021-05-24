@@ -1,0 +1,27 @@
+var commonChars = function(words) {
+    let starter = words[0].split("");
+    starter.sort();
+    
+    for(let word of words){
+        let arr = word.split("");
+        arr.sort();
+        
+        let idx_s = 0, idx_a = 0;
+        let temp_starter = [];
+        while(idx_s < starter.length && idx_a < arr.length){
+            const char_c = starter[idx_s];
+            const char_a = arr[idx_a];
+            if(char_c === char_a){
+                temp_starter.push(starter[idx_s]);
+                idx_s++;
+                idx_a++;
+            }else if(char_c < char_a){
+                idx_s++;
+            }else{
+                idx_a++;
+            }
+        }
+        starter = temp_starter.slice();
+    }
+    return starter;
+};
