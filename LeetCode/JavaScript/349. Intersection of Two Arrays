@@ -1,0 +1,11 @@
+var intersection = function(nums1, nums2) {
+    let answer = []
+    
+    nums1.forEach((num) => {
+        if(!answer.includes(num) && nums2.includes(num)){
+            answer.push(num);
+        }
+    })
+    
+    return answer;
+}
