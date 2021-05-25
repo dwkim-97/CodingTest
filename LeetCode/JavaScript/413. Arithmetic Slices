@@ -1,0 +1,23 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var numberOfArithmeticSlices = function(nums) {
+    let answer = 0;
+    for(let start = 0; start < nums.length-2; start++){
+        for(let end = start+3; end <= nums.length; end++){
+            let flag = true;
+            const t_def = nums[start+1] - nums[start];
+            for(let i = start; i < end-1; i++){
+                if(nums[i+1] - nums[i] !== t_def){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag) answer++;
+            else break;
+        }
+    }
+    
+    return answer;
+};
