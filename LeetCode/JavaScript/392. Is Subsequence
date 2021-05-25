@@ -1,0 +1,21 @@
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequence = function(s, t) {
+    let og_idx = 0, sub_idx = 0;
+    
+    while(og_idx < t.length && sub_idx < s.length){
+        if(t[og_idx] === s[sub_idx]){
+            og_idx++;
+            sub_idx++;
+        }else{
+            og_idx++;
+        }
+    }
+    
+    if(sub_idx === s.length)
+        return true;
+    return false;
+};
