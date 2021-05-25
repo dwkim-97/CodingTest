@@ -1,0 +1,26 @@
+/**
+ * @param {string} ransomNote
+ * @param {string} magazine
+ * @return {boolean}
+ */
+var canConstruct = function(ransomNote, magazine) {
+    let used = []
+    for(let i = 0; i < magazine.length; i++){
+        used.push(false);
+    }
+    
+    for(const c of ransomNote){
+        console.log(c);
+        let flag = false;
+        for(let i = 0; i < magazine.length; i++){
+            if(magazine[i] === c && !used[i]){
+                flag = true;
+                used[i] = true;
+                break;
+            }
+        }
+        if(!flag) return false;
+    }
+    
+    return true;
+};
