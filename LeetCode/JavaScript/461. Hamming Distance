@@ -1,0 +1,24 @@
+/**
+ * @param {number} x
+ * @param {number} y
+ * @return {number}
+ */
+var hammingDistance = function(x, y) {
+    let answer = 0;
+    
+    let new_x = x.toString(2);
+    let new_y = y.toString(2);
+    
+    if(new_x.length > new_y.length){
+        new_y = "0".repeat(new_x.length-new_y.length) + new_y
+    }else{
+        new_x = "0".repeat(new_y.length-new_x.length) + new_x
+    }
+    
+    for(let i = 0; i < new_x.length; i++){
+        if(new_x[i] !== new_y[i])
+            answer++;
+    }
+    
+    return answer;
+};
