@@ -1,0 +1,13 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countSegments = function(s) {
+    let answer = 0;
+    let arr = s.split(" ");
+    
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] !== "") answer++;
+    }
+    return answer;
+};
