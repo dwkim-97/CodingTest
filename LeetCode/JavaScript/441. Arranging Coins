@@ -1,0 +1,14 @@
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var arrangeCoins = function(n) {
+    let idx = 0;
+    
+    while(n >= 0){
+        idx++;
+        n -= idx;
+    }
+    
+    return idx-1;
+};
