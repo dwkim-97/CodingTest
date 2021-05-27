@@ -1,0 +1,25 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var longestPalindrome = function(s) {
+    let answer = 0;
+    let dict = {};
+    for(const c of s){
+        dict[c] = Object.keys(dict).includes(c) ? dict[c]+1 : 1;
+    }
+    
+    let isOdd = false;
+    for(const k of Object.keys(dict)){
+        if(dict[k] % 2 === 0){
+            answer += dict[k];
+        }else{
+            answer += dict[k]-1;
+            isOdd = true;
+        }
+    }
+    
+    if(isOdd) answer++;
+    
+    return answer;
+};
