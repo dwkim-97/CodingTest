@@ -1,0 +1,24 @@
+/**
+ * @param {number[]} g
+ * @param {number[]} s
+ * @return {number}
+ */
+var findContentChildren = function(g, s) {
+    g.sort((a,b) => {
+        return a-b;
+    });
+    s.sort((a,b) => {
+        return a-b;
+    });
+    
+    let g_idx = 0, s_idx = 0;
+    while(g_idx < g.length && s_idx < s.length){
+        if(g[g_idx] <= s[s_idx]){
+            g_idx++;
+            s_idx++;
+        }else{
+            s_idx++;
+        }
+    }
+    return g_idx;
+};
