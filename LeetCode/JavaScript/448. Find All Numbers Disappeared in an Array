@@ -1,0 +1,14 @@
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDisappearedNumbers = function(nums) {
+    const answer = [];
+    const l = nums.length;
+    for(let i = 0; i < l; i++){
+        if(!nums.includes(i+1))
+            answer.push(i+1);
+    }
+    
+    return answer;
+};
