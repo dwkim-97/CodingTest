@@ -1,0 +1,28 @@
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var islandPerimeter = function(grid) {
+    let answer = 0;
+    
+    const row_len = grid.length;
+    const col_len = grid[0].length;
+    
+    for(let row = 0; row < row_len; row++){
+        for(let col = 0; col < col_len; col++){
+            if(grid[row][col] === 1){
+                answer += 4;
+                if(row+1 < row_len && grid[row+1][col] === 1)
+                    answer--;
+                if(row-1 >= 0 && grid[row-1][col] === 1)
+                    answer--;
+                if(col+1 < col_len && grid[row][col+1] === 1)
+                    answer--;
+                if(col-1 >= 0 && grid[row][col-1] === 1)
+                    answer--;
+            }
+        }
+    }
+    
+    return answer;
+};
