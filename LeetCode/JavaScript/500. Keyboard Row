@@ -1,0 +1,32 @@
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+var findWords = function(words) {
+    const answer = [];
+    const R1 = "QWERTYUIOP", R2 = "ASDFGHHJKL", R3 = "ZXCVBNM";
+
+    words.forEach(word =>{
+        const upper_word = word.toUpperCase();
+        let default_row;
+        if(R1.indexOf(upper_word[0]) !== -1){
+            default_row = R1;
+        }else if(R2.indexOf(upper_word[0]) !== -1){
+            default_row = R2;
+        }else{
+            default_row = R3;
+        }
+        
+        let checker = true;
+        for(let i = 1; i < upper_word.length; i++){
+            if(default_row.indexOf(upper_word[i]) === -1) {
+                checker = false;
+                break;
+            }
+        }
+        
+        if(checker)
+            answer.push(word);
+    })
+    return answer;
+};
