@@ -1,0 +1,14 @@
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var findComplement = function(num) {
+    let answer = 0;
+    const changed = num.toString(2);
+    for(let i = 0; i < changed.length; i++){
+        if(changed[i] === "0"){
+            answer += Math.pow(2, changed.length-i-1);
+        }
+    }
+    return answer;
+};
