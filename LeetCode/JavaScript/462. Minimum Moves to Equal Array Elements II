@@ -1,0 +1,17 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minMoves2 = function(nums) {
+    nums.sort((a,b)=>{
+        return a-b;
+    });
+    
+    mid = nums[Math.floor(nums.length/2)];
+    let cost = 0;
+    for(const n of nums){
+        cost += Math.abs(n - mid);
+    }
+    
+    return cost;
+}
