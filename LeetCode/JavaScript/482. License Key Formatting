@@ -1,0 +1,24 @@
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var licenseKeyFormatting = function(s, k) {
+    let answer = "";
+    s = s.toUpperCase();
+    let str = s.split("-").join("");
+    
+    if(str.length % k !== 0){
+        answer += str.substring(0, str.length % k);
+        str = str.substring(str.length % k, str.length);
+    }
+    
+    for(let i = 0; i < Math.ceil(str.length/k); i++){
+        if(i == 0 && answer === "")
+            answer += str.substring(i*k, (i+1)*k);
+        else
+            answer += "-" + str.substring(i*k, (i+1)*k);
+    }
+    
+    return answer;
+};
