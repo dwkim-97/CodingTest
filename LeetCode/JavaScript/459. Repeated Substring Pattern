@@ -1,0 +1,15 @@
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var repeatedSubstringPattern = function(s) {
+    for(let length = 1; length <= s.length/2; length++){
+        for(let i = 1; i < s.length/length; i++){
+            if(s.substring((i-1)*length, i*length) !== s.substring(i*length, (i+1)*length))
+                break;
+            if(i+1 === Math.ceil(s.length/length))
+                return true;
+        }
+    }
+    return false;
+};
