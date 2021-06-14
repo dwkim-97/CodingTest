@@ -1,0 +1,24 @@
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var nextGreaterElement = function(nums1, nums2) {
+    const answer = [];
+    for(let i = 0; i < nums1.length; i++){
+        answer.push(findGreater(nums1[i], nums2));
+    }
+    return answer;
+};
+
+const findGreater = (num1, nums2, i) => {
+    for(let i = 0; i < nums2.length; i++){
+        if(nums2[i] === num1){
+            for(let j = i; j < nums2.length; j++){
+                if(nums2[j] > num1) return nums2[j];
+            }
+            return -1;
+        }
+    }
+   
+}
