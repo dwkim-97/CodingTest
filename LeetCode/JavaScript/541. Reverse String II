@@ -1,0 +1,18 @@
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var reverseStr = function(s, k) {
+    let answer = "";
+    
+    for(let pointer = 0; pointer < s.length; pointer += 2*k){
+        if(pointer + k >= s.length)
+            answer += s.slice(pointer, s.length).split("").reverse().join("");    
+        else if(pointer + 2*k >= s.length)
+            answer += s.slice(pointer, pointer + k).split("").reverse().join("") + s.slice(pointer+k, s.length);
+        else
+            answer += s.slice(pointer, pointer + k).split("").reverse().join("") + s.slice(pointer+k, pointer + 2*k);
+    }
+    return answer;
+};
