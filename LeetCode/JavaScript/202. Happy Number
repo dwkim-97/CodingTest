@@ -1,0 +1,23 @@
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isHappy = function(n) {
+    const set = [n];
+    while(n !== 1){
+        n = getSumOfSquares(n);
+        if(set.indexOf(n) !== -1)
+            return false;
+        set.push(n);
+    }
+    return true;
+};
+
+const getSumOfSquares = n => {
+    const str_n = String(n);
+    let sum = 0;
+    for(let i = 0; i < str_n.length; i++){
+        sum += Math.pow(parseInt(str_n[i]),2);
+    }
+    return sum;
+}
