@@ -2,56 +2,53 @@ function solution(s) {
     let answer = '';
     let i = 0;
     
-    while(i < s.length){
-        const checker = checkChar(s.charAt(i));
-        
-        switch(char){
-            case 'z':
-                i += 4;
-                answer += '0';
-                break;
-            case 'o':
-                i += 3;
-                answer += '1';
-                break;
-            case 'e':
-                i += 5;
-                answer += '8';
-                break;
-            case 'n':
-                i += 4;
-                answer += '9';
-                break;
-            case 't':
-                if(s.charAt(i+1) === 'w'){
-                    i += 3;
-                    answer += '2';
-                }else{
-                    i += 5;
-                    answer += '3';
-                }
-                break;
-            case 'f':
-                if(s.charAt(i+1) === 'i'){
-                    answer += '5';
-                }else{
-                    answer += '4';
-                }
-                i += 4;
-                break;
-            case 's':
-                if(s.charAt(i+1) === 'i'){
-                    i += 3;
-                    answer += '6';
-                }else{
-                    i += 5;
-                    answer += '7';
-                }
-                break;
-            default:
-                i++;
-                answer += char;
+    const numbers = {
+        zero: { len: 4, char: '0' },
+        one: { len: 3, char: '1' },
+        two: { len: 3, char: '2' },
+        three: { len: 5, char: '3' },
+        four: { len: 4, char: '4' },
+        five: { len: 4, char: '5' },
+        six: { len: 3, char: '6' },
+        seven: { len: 5, char: '7' },
+        eight: { len: 5, char: '8' },
+        nine: { len: 4, char: '9' },
+    }
+    
+    const update = char => {
+        if(numbers[char]){
+            answer += numbers[char].char;
+            return numbers[char].len;
+        }else{
+            answer += char;
+            return 1;
         }
+    }
+    
+    while(i < s.length){
+        const char = s.charAt(i);
+        const nextChar = s.charAt(i+1);
+        i += char === 'z' 
+            ? update('zero')
+            : char === 'o' 
+            ? update('one')
+            : char === 'e'
+            ? update('eight')
+            : char === 'n'
+            ? update('nine')
+            : char === 't'
+            ? nextChar === 'w'
+                ? update('two')
+                : update('three')
+            : char === 'f'
+            ? nextChar === 'o'
+                ? update('four')
+                : update('five')
+            : char === 's'
+            ? nextChar === 'i'
+                ? update('six')
+                : update('seven')
+            : update(char);
     }
     return Number(answer);
 }
