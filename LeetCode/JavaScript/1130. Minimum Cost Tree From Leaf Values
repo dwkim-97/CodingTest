@@ -1,0 +1,26 @@
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var mctFromLeafValues = function(arr) {
+    let answer = 0;
+    
+    while(arr.length > 1){
+        let minIdx = 0;
+        let minVal = 225;
+        for(let i = 0; i < arr.length - 1; i++){
+            if(arr[i] * arr[i + 1] < minVal){
+                minIdx = i;
+                minVal = arr[i] * arr[i + 1];
+            }
+        }
+        answer += minVal;
+        if(arr[minIdx] < arr[minIdx + 1]){
+            arr.splice(minIdx, 1);
+        }else{
+            arr.splice(minIdx + 1, 1);
+        }
+    }
+
+    return answer;
+};
