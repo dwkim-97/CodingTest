@@ -6,10 +6,7 @@ var minDeletions = function(s) {
     let answer = 0;
     const arr = s.split('');
     const dict = {};
-    const mem = new Array(10000);
-    for(let i = 0; i < 10000; i++){
-        mem[i] = false;
-    }
+    const mem = [];
     arr.map(char => {
         dict[char] = dict[char] ? dict[char] + 1 : 1;
     })
@@ -19,7 +16,7 @@ var minDeletions = function(s) {
             let nextPos = v;
             while(nextPos > 0){
                 if(!mem[nextPos]){
-                    mem[nextPos] = !mem[nextPos];
+                    mem[nextPos] = true;
                     answer += v - nextPos;
                     break;
                 }else{
