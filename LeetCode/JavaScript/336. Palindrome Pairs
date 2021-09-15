@@ -1,0 +1,32 @@
+/**
+ * @param {string[]} words
+ * @return {number[][]}
+ */
+var palindromePairs = function(words) {
+    const answer = [];
+    const l = words.length;
+    
+    const checkUnion = union => {
+        const len = union.length;
+        for(let i = 0; i < len/2; i++){
+            if(union[i] !== union[len-i-1]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    
+    for(let i = 0; i < l; i++){
+        for(let j = 0; j < l; j++){
+            if(i !== j){
+                const union = words[i].concat(words[j]);
+                if(checkUnion(union)){
+                    answer.push([i, j])
+                } 
+            }
+        }
+    }
+    
+    return answer;
+};
