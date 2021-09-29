@@ -1,0 +1,31 @@
+/**
+ * @param {number[]} arr
+ * @param {number} start
+ * @return {boolean}
+ */
+var canReach = function(arr, start) {
+    const visited = [];
+    arr.map(_ => {
+        visited.push(false);
+    });
+    
+    const queue = [start];
+    visited[start] = true;
+    while(queue.length){
+        const idx = queue.pop();
+        const val = arr[idx];
+        if(val === 0){
+            return true;
+        }
+        if(idx - val >= 0 && !visited[idx - val]){
+            queue.push(idx - val);
+            visited[idx - val] = true;
+        }
+        if(idx + val < arr.length && !visited[idx + val]){
+            queue.push(idx + val)
+            visited[idx + val] = true;
+        }
+    }
+    
+    return false;
+};
