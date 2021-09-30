@@ -1,0 +1,30 @@
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number[]}
+ */
+var numsSameConsecDiff = function(n, k) {
+    const answer = [];
+    
+    const permutation = (idx , cur) => {
+        if(idx === n){
+            if(answer.indexOf(cur) === -1){
+                answer.push(cur);
+            }
+        }else{
+            const last = parseInt(cur[idx-1]);
+            if(last - k >= 0){
+                permutation(idx+1, cur+(last-k));
+            }
+            if(last + k < 10){
+                permutation(idx+1, cur+(last+k));
+            }
+        } 
+    }
+    
+    for(let i = 1; i < 10; i++){
+        permutation(1, String(i));
+    }
+    
+    return answer;
+};
