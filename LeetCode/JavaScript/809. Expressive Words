@@ -1,0 +1,38 @@
+/**
+ * @param {string} s
+ * @param {string[]} words
+ * @return {number}
+ */
+var expressiveWords = function(s, words) {
+    const makeDict = word => {
+        const splitted = word.split('');
+        const dict = [];
+        let prev_char = '';
+        splitted.map(char => {
+            if(char !== prev_char){
+                dict.push([char, 1]);
+                prev_char = char;
+            }else{
+                dict[dict.length - 1][1]++;
+            }
+        })
+        return dict;
+    }
+    
+    const s_dict = makeDict(s);
+    
+    return words.reduce((count, word) => {
+        const word_dict = makeDict(word);
+        if(word_dict.length !== s_dict.length) return count;
+        else{
+            for(let i = 0; i < word_dict.length; i++){
+                const [w_char, w_count] = word_dict[i];
+                const [s_char, s_count] = s_dict[i];
+                if(w_char !== s_char) return count;
+                if(w_count > s_count) return count;
+                if(w_count !== s_count && s_count < 3) return count;
+            }
+            return count+1;
+        }
+    }, 0);
+};
